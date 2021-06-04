@@ -42,17 +42,17 @@ There are additional digits you can extract.
 
 Punk digits:
 ```cpp
-dd if=my_fw-backup-4M.bin of=punk.bin skip=$((0x15d9a8-20*64800)) count=$((270*2640)) iflag=skip_bytes,count_bytes
+dd if=fw-backup-4M.bin of=punk.bin skip=$((0x15d9a8-20*64800)) count=$((270*2640)) iflag=skip_bytes,count_bytes
 ```
 
 Retro unpowered grid:
 ```cpp
-dd if=my_fw-backup-4M.bin of=retro-grid.bin skip=$((0x15d9a8-21*64800)) count=$((270*240)) iflag=skip_bytes,count_bytes
+dd if=fw-backup-4M.bin of=retro-grid.bin skip=$((0x15d9a8-21*64800)) count=$((270*240)) iflag=skip_bytes,count_bytes
 ```
 
-Everything I could find in the firware:
+Everything I could find in the firmware:
 ```cpp
-dd if=myfw-backup-4M.bin of=all.bin skip=$((0x15d9a8-21*64800)) count=$((270*5280)) iflag=skip_bytes,count_bytes
+dd if=fw-backup-4M.bin of=all.bin skip=$((0x15d9a8-21*64800)) count=$((270*5280)) iflag=skip_bytes,count_bytes
 ```
 
 To create individual retro digit files (for use in WLED):
