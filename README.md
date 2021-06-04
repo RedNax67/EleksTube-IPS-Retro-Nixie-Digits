@@ -25,7 +25,7 @@ esptool.py --baud 115200 --port [COM port] read_flash 0x0 0x0400000 my_fw-backup
 
 Extract the binary data containing the retro digits 9-0
 ```cpp
-dd if=my_fw-backup-4M.bin of=retro.bin skip=$((0x15d9a8-10*64800)) count=$((270*2640)) iflag=skip_bytes,count_bytes
+dd if=fw-backup-4M.bin of=retro.bin skip=$((0x15d9a8-9*64800)) count=$((270*2400)) iflag=skip_bytes,count_bytes
 ```
 
 Create a C Header file from the binary data
@@ -53,4 +53,13 @@ dd if=my_fw-backup-4M.bin of=retro-grid.bin skip=$((0x15d9a8-21*64800)) count=$(
 Everything I could find in the firware:
 ```cpp
 dd if=myfw-backup-4M.bin of=all.bin skip=$((0x15d9a8-21*64800)) count=$((270*5280)) iflag=skip_bytes,count_bytes
+```
+
+To create individual retro digit files (for use in WLED):
+```cpp
+for i in {0..9}
+do
+  dd if=fw-backup-4M.bin of=$i.bin skip=$((0x15d9a8-$i*64800)) count=$((270*240)) iflag=skip_bytes,count_bytes
+  convert -size 135x240 -depth 16 GRAY:$i.bin $i.png # for reference, not using in elekstube code
+done
 ```
