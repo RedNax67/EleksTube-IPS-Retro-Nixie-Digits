@@ -14,13 +14,15 @@ All extraction and conversion steps were done in Linux using the standard tools:
 
 - `esptool.py` https://github.com/espressif/esptool
 - `dd` (part of most Linux distributions)
-- `xxd` (part of most Linux distributions) 
+- `xxd` (part of most Linux distributions)
+
+These can be installed on Windows Linux Subsystem aswell
 
 To extract the contents of the retro.h file, follow these steps:
 
 Backup the firmware from your Elekstube IPS Clock
 ```cpp
-esptool.py --baud 115200 --port [COM port] read_flash 0x0 0x0400000 my_fw-backup-4M.bin
+esptool.py --baud 115200 --port [COM port] read_flash 0x0 0x0400000 fw-backup-4M.bin
 ```
 
 Extract the binary data containing the retro digits 9-0
